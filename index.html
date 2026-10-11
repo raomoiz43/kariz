@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2d3029">
+<title>Rao Kariz Ahmed | Wedding Invitation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<!-- ============ LIVING BACKGROUND (video-like: slow zoom, mist, drifting petals) ============ -->
+<div class="bg-full" aria-hidden="true"></div>
+<div class="bg-phone" aria-hidden="true">
+  <div class="bg-art"></div>
+  <div class="mist m1"></div>
+  <div class="mist m2"></div>
+  <div class="vignette"></div>
+</div>
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<!-- ============ ENVELOPE INTRO ============ -->
+<section id="intro" class="intro" aria-label="Open invitation">
+  <p class="intro-top">A Wedding Invitation For You</p>
+
+  <button id="envelope" class="envelope" aria-label="Tap to open the invitation">
+    <span class="env-back"></span>
+    <span class="env-letter">
+      <b id="letterText">K &amp; N</b>
+    </span>
+    <svg class="env-front" viewBox="0 0 400 270" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="gBody" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#d9d9d0"/><stop offset="1" stop-color="#bfc0b5"/>
+        </linearGradient>
+        <linearGradient id="gSide" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#cfd0c5"/><stop offset="1" stop-color="#dcdcd3"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="270" fill="url(#gBody)"/>
+      <polygon points="0,0 200,150 0,270"   fill="url(#gSide)" opacity=".9"/>
+      <polygon points="400,0 200,150 400,270" fill="url(#gSide)" opacity=".9" transform="scale(1,1)"/>
+      <polygon points="0,270 200,120 400,270" fill="#e3e3da"/>
+      <path d="M0 270 L200 120 L400 270" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.2"/>
+    </svg>
+    <span class="env-flap">
+      <svg viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="gFlap" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e6e6dd"/><stop offset="1" stop-color="#cdcdc2"/>
+          </linearGradient>
+        </defs>
+        <polygon points="0,0 400,0 200,150" fill="url(#gFlap)"/>
+        <!-- lace edge -->
+        <path d="M0 0 L200 150 L400 0" fill="none" stroke="#fff" stroke-width="9" stroke-opacity=".75" stroke-dasharray="1 7" stroke-linecap="round"/>
+        <path d="M0 0 L200 150 L400 0" fill="none" stroke="#fff" stroke-width="2" stroke-opacity=".8"/>
+        <path d="M0 9 L200 160 L400 9" fill="none" stroke="#fff" stroke-width="1" stroke-opacity=".5" transform="translate(0,-9)"/>
+      </svg>
+    </span>
+    <span class="seal" aria-hidden="true"><span id="sealText">RK</span></span>
+  </button>
+
+  <p class="tap">Tap to Open</p>
+  <p class="scrollcue" id="scrollCue">Scroll down<span></span></p>
+</section>
+
+<!-- ============ MAIN INVITATION ============ -->
+<main id="card" class="card" aria-hidden="true">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-sky"></div>
+    <div class="plaque reveal">
+      <p class="eyebrow">We warmly invite you to</p>
+      <p class="eyebrow small">the wedding celebration of</p>
+      <h1 class="names">
+        <span class="groom">Rao Kariz Ahmed</span>
+        <span class="amp">&amp;</span>
+        <span class="bride" id="brideName">Bride</span>
+      </h1>
+      <p class="daughter" id="brideParent">Daughter of Mr. Zainulabiddin</p>
+      <div class="rule"><span>❧</span></div>
+      <p class="scroll-hint">Scroll</p>
+    </div>
+  </header>
+
+  <!-- Verse -->
+  <section class="panel verse">
+    <p class="bismillah reveal" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+    <p class="small-cap reveal">In the name of Allah, the Most Gracious, the Most Merciful</p>
+    <p class="ayah reveal" lang="ar" dir="rtl">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+    <p class="script reveal">And among His Signs is that He created for you spouses from among yourselves, that you may find tranquility in them, and He placed between you affection and mercy.</p>
+    <p class="small-cap ref reveal">Qur’an · Ar-Rum 30:21</p>
+  </section>
+
+  <!-- Scratch & reveal -->
+  <section class="panel scratch-sec">
+    <p class="eyebrow reveal">A little surprise</p>
+    <h2 class="h-script reveal">Scratch &amp; Reveal the Date</h2>
+    <div class="ornament reveal"><span></span><i>✦</i><span></span></div>
+
+    <div class="scratch-wrap reveal" id="scratchWrap">
+      <div class="scratch-under" id="scratchUnder">
+        <small>Save the Date</small>
+        <strong>13 November 2026</strong>
+        <em>Barat · In sha Allah</em>
+      </div>
+      <canvas id="scratch" aria-label="Scratch card, rub to reveal the date"></canvas>
+    </div>
+    <p class="hint reveal" id="scratchHint">Rub with your finger to reveal the date</p>
+    <button class="link-btn" id="revealBtn" type="button">or tap here to reveal</button>
+  </section>
+
+  <!-- Events
+       MAP LINKS: har event ke "venue" link ke href mein query=... ki jagah apni asli Google Maps link daal dein. -->
+  <section class="events">
+    <p class="eyebrow light reveal">Celebrating Together</p>
+    <h2 class="h-script light reveal">Wedding Events</h2>
+    <div class="ornament light reveal"><span></span><i>❧</i><span></span></div>
+
+    <article class="event reveal">
+      <div class="medal">❧</div>
+      <p class="urdu" lang="ur" dir="rtl">مہندی</p>
+      <h3>Mehendi</h3>
+      <p class="kind">Henna Evening</p>
+      <div class="sep"></div>
+      <p class="date">11 November 2026</p>
+      <p class="time">8:00 PM</p>
+      <a class="venue" href="https://www.google.com/maps?rlz=1C1CHBF_enPK1233PK1233&gs_lcrp=EgZjaHJvbWUqDQgBEC4YrwEYxwEYgAQyBggAEEUYOTINCAEQLhivARjHARiABDIICAIQABgWGB4yCggDEAAYgAQYogQyCggEEAAYgAQYogQyCggFEAAYogQYiQUyCggGEAAYgAQYogTSAQg2NDk0ajBqNKgCALACAQ&um=1&ie=UTF-8&fb=1&gl=pk&sa=X&geocode=KdVhW8COObM-Mdh8Lw06aCTm&daddr=3/69-A%D8%8C+V5G5%2BW7M+Big+Plot%D8%8C+adjacent+Jama+Masjid+Kulsoom,+Reta+Plot+Shah+Faisal+Colony,+Shah+Faisal+Town,+75230" target="_blank" rel="noopener" aria-label="Fahad Lawn on map"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7.6 2 4 5.5 4 9.8c0 5.6 6.6 11.6 7.3 12.2.4.3.9.3 1.3 0C13.4 21.4 20 15.4 20 9.8 20 5.5 16.4 2 12 2zm0 10.3a2.7 2.7 0 110-5.4 2.7 2.7 0 010 5.4z"/></svg>Fahad Lawn</b><small>View on Map</small></a>
+    </article>
+
+    <article class="event reveal">
+      <div class="medal">☾</div>
+      <p class="urdu" lang="ur" dir="rtl">بارات</p>
+      <h3>Barat</h3>
+      <p class="kind">The Ceremony</p>
+      <div class="sep"></div>
+      <p class="date">13 November 2026</p>
+      <p class="time">8:00 PM</p>
+      <a class="venue" href="google.com/maps?sca_esv=1b278b057657356a&rlz=1C1CHBF_enPK1233PK1233&biw=1366&bih=633&sxsrf=APpeQntJej3w75mTIa5qjc1bSu95T48q6g:1791639117309&gs_lp=Egxnd3Mtd2l6LXNlcnAiDkhhc3NhbiBCYW5xdWV0KgoIABhHGNYEGLADMgoQABhHGNYEGLADMgoQABhHGNYEGLADMgoQABhHGNYEGLADMgoQABhHGNYEGLADMgoQABhHGNYEGLADMgoQABhHGNYEGLADMgoQABhHGNYEGLADMgoQABhHGNYEGLADMhMQLhiABBiKBRhDGMcBGK8BGLADMhcQLhjcBhi4BhjaBhjYAhjIAxiwA9gBAUilE1CiAli9DHACeAGQAQCYAfIBoAHyAaoBAzItMbABALgBA8gBAPgBAZgCA6ACtgLCAgoQABiABBiKBRhDwgILEC4YgAQYxwEYrwHCAgUQABiABMICCxAAGIAEGIoFGIYDmAMA4gMEGAAgXeIDBBgAIF7iAwQYACBf4gMEGAAgYOIDBBgAIGHiAwQYACBiiAYBkAYKugYECAEYGZIHBTIuMC4xoAeYCbIHAzItMbgHiwLCBwMzLTPIBy2ACAE&um=1&ie=UTF-8&fb=1&gl=pk&sa=X&geocode=KYm_HwNJO7M-MfsD0EAydr_m&daddr=R562%2BGGH,+Sector+49+Korangi,+Karachi" target="_blank" rel="noopener" aria-label="Hasan Banquet on map"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7.6 2 4 5.5 4 9.8c0 5.6 6.6 11.6 7.3 12.2.4.3.9.3 1.3 0C13.4 21.4 20 15.4 20 9.8 20 5.5 16.4 2 12 2zm0 10.3a2.7 2.7 0 110-5.4 2.7 2.7 0 010 5.4z"/></svg>Hasan Banquet</b><small>View on Map</small></a>
+    </article>
+
+    <article class="event reveal">
+      <div class="medal">✦</div>
+      <p class="urdu" lang="ur" dir="rtl">ولیمہ</p>
+      <h3>Walima</h3>
+      <p class="kind">Reception</p>
+      <div class="sep"></div>
+      <p class="date">14 November 2026</p>
+      <p class="time">9:00 PM</p>
+      <a class="venue" href="https://www.google.com/maps?rlz=1C1CHBF_enPK1233PK1233&gs_lcrp=EgZjaHJvbWUqBwgBEAAYgAQyCggAEEUYFhgeGDkyBwgBEAAYgAQyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyCAgHEAAYFhgeMggICBAAGBYYHjIICAkQABgWGB7SAQgzNzI4ajBqN6gCALACAA&um=1&ie=UTF-8&fb=1&gl=pk&sa=X&geocode=KW949XYAO7M-MSDR9CqXrcDz&daddr=Coast+Guards+Chowrangi,+Gate+%23+2+Korangi+%23+2,+Sector+49+%C2%BD,+Karachi" target="_blank" rel="noopener" aria-label="Rani Mahal Banquet on map"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7.6 2 4 5.5 4 9.8c0 5.6 6.6 11.6 7.3 12.2.4.3.9.3 1.3 0C13.4 21.4 20 15.4 20 9.8 20 5.5 16.4 2 12 2zm0 10.3a2.7 2.7 0 110-5.4 2.7 2.7 0 010 5.4z"/></svg>Rani Mahal Banquet</b><small>View on Map</small></a>
+    </article>
+  </section>
+
+  <!-- Countdown -->
+  <section class="panel count-sec">
+    <p class="eyebrow reveal">Counting Down</p>
+    <h2 class="h-script reveal">to the Barat</h2>
+    <div class="clock reveal" id="clock" role="timer" aria-live="off">
+      <div><b id="cd-d">00</b><span>Days</span></div>
+      <i>:</i>
+      <div><b id="cd-h">00</b><span>Hours</span></div>
+      <i>:</i>
+      <div><b id="cd-m">00</b><span>Minutes</span></div>
+      <i>:</i>
+      <div><b id="cd-s">00</b><span>Seconds</span></div>
+    </div>
+    <p class="small-cap reveal">13 November 2026 · 8:00 PM</p>
+    <p class="urdu inshallah reveal" lang="ur" dir="rtl">اِنْ شَاءَ اللّٰه</p>
+  </section>
+
+  <!-- Closing -->
+  <footer class="closing">
+    <div class="garden" aria-hidden="true"></div>
+    <div class="closing-in">
+      <p class="eyebrow light reveal">With love</p>
+      <p class="script light reveal">Your presence and prayers will make our day complete.</p>
+      <p class="sign reveal">Rao Kariz Ahmed</p>
+      <p class="urdu amin reveal" lang="ar" dir="rtl">آمین</p>
+    </div>
+  </footer>
+</main>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
